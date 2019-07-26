@@ -332,7 +332,59 @@ where rn > 10;
 --![](https://upload-images.jianshu.io/upload_images/5227364-62054cfca59fef03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 --## 练习七
---1. 按照每页显示5条记录，分别查询工资最高的第1页，第2页，第3页信息，要求显示员工姓名、入职日期、部门名称、工资。
+--1. 按照每页显示5条记录，分别查询工资最高的第1页，第2页，第3页信息，
+--要求显示员工姓名、入职日期、部门名称、工资。
+
+-- 第一步：将其所有的结果查出
+select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc;
+-- 第二步：将第一步的结果作为一个表再次进行查询,
+--将将伪列重命名为一个列，此表可以作为制最大数值的表
+
+select rownum rn tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate;
+-- 比如此处可以添一句where rownum <= maxNum 
+-- 而若想分页则可以将以上的集合再判断 rn > minNum
+
+
+
+-- 第三步：以上结果再次作业一个表进行分页
+
+-- 第一页：0~5
+select * from
+(select rownum rn,tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate
+where rownum <= 5)
+where rn > 0;
+
+--第二页：5~10
+select * from
+(select rownum rn,tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate
+where rownum <= 10)
+where rn > 5;
+-- 第三页: 11~15
+select * from
+(select rownum rn,tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate
+where rownum <= 15)
+where rn > 10;
+
+
 
 --## 课后作业
 --1. 查询工资高于编号为7782的员工工资，并且和7369号员工从事相同工作的员工的编号、姓名及工资。
