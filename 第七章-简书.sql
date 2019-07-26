@@ -391,11 +391,10 @@ select empno,ename,sal,job
 from emp 
 where sal > (select sal from emp where empno in 7782)
 and job in (select job from emp where empno in 7369);
+--2. 查询工资最高的员工姓名和工资。 
 
 select * from emp;
 select * from dept;
-
---2. 查询工资最高的员工姓名和工资。 
 --3. 查询部门最低工资高于10号部门最低工资的部门的编号、名称及部门最低工资。
 --4. 查询员工工资为其部门最低工资的员工的编号和姓名及工资。
 --5. 显示经理是KING的员工姓名，工资。
