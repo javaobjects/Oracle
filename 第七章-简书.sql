@@ -384,10 +384,17 @@ order by sal desc) tab_allDate
 where rownum <= 15)
 where rn > 10;
 
-
-
 --## 课后作业
---1. 查询工资高于编号为7782的员工工资，并且和7369号员工从事相同工作的员工的编号、姓名及工资。
+--1. 查询工资高于编号为7782的员工工资，
+--并且和7369号员工从事相同工作的员工的编号、姓名及工资。
+select empno,ename,sal,job
+from emp 
+where sal > (select sal from emp where empno in 7782)
+and job in (select job from emp where empno in 7369);
+
+select * from emp;
+select * from dept;
+
 --2. 查询工资最高的员工姓名和工资。 
 --3. 查询部门最低工资高于10号部门最低工资的部门的编号、名称及部门最低工资。
 --4. 查询员工工资为其部门最低工资的员工的编号和姓名及工资。
