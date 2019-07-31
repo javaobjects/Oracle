@@ -5,12 +5,13 @@
 
     select * from emp 
     where sal > (select sal from emp where ename in 'JONES');
- ![](https://upload-images.jianshu.io/upload_images/5227364-384df34664bf9c81.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   
+
+![](18-Images/1.png) 
 查询工资最低的员工姓名？
 
     select ename from emp
     where sal = (select min(sal) from emp);
-![](https://upload-images.jianshu.io/upload_images/5227364-06d4422a1defc89d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/2.png) 
 
 ## 练习一
 1. 查询入职日期最早的员工姓名，入职日期
@@ -23,7 +24,7 @@ from emp
 where hiredate = (select min(hiredate) from emp);
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-dacaafea905a10c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/3.png) 
 
 2. 查询工资比SMITH工资高并且工作地点在CHICAGO的员工姓名，工资，部门名称
 
@@ -41,8 +42,7 @@ where sal >
 and dept.loc in 'CHICAGO';
 
 ```
-
-![](https://upload-images.jianshu.io/upload_images/5227364-544cd7be784aecde.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/4.png)  
 
 3. 查询入职日期比20部门入职日期最早的员工还要早的员工姓名，入职日期
 
@@ -69,7 +69,7 @@ where hiredate <
 (select min(hiredate) from emp where deptno in 20);
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-47fcee56cf29c8e1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/5.png)    
 
 4. 查询部门人数大于所有部门平均人数的的部门编号，部门名称，部门人数
 ```
@@ -87,7 +87,7 @@ having count(emp.deptno) >
 (select avg(count(deptno)) from emp group by deptno);
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-23eb6b60a407fa1f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/6.png)  
 
 ## 练习二
 
@@ -106,7 +106,7 @@ and deptno <> 10;
 ```
 
 
-![](https://upload-images.jianshu.io/upload_images/5227364-3de56497f041b420.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/7.png) 
 
 2. 查询入职日期比10部门所有员工晚的员工姓名、入职日期，不包括10部门员工
 
@@ -122,7 +122,7 @@ all (select hiredate from emp where deptno in 10)
 and deptno <> 10;
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-ce37df287ae28922.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/8.png) 
 
 3. 查询职位和10部门任意一个员工职位相同的员工姓名，职位，不包括10部门员工
 
@@ -138,7 +138,7 @@ any (select job from emp where deptno in 10)
 and deptno <> 10;
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-1e8adf38cae2d2d3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/9.png)  
 
 ## 练习三
 1. 查询职位及经理和10部门任意一个员工职位及经理相同的员工姓名，职位，不包括10部门员工
@@ -155,7 +155,7 @@ where (job,mgr) in
 and deptno not in 10;
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-85341d40d5bd2c98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/10.png)   
 
 2. 查询职位及经理和10部门任意一个员工职位或经理相同的员工姓名，职位，不包括10部门员工
 
@@ -175,7 +175,8 @@ or mgr in
 and deptno not in 10;
 ```
 
- ![](https://upload-images.jianshu.io/upload_images/5227364-7da74afb693309e8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)   
+
+![](18-Images/11.png)    
 
 ## 练习四
 
@@ -199,7 +200,7 @@ and avgSal < sal;
 ```
   
     
-![](https://upload-images.jianshu.io/upload_images/5227364-e602f88a6e1af955.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/12.png)      
 
 2. 查询职位和经理同员工SCOTT或BLAKE完全相同的员工姓名、职位，不包括SCOOT和BLAKE本人。
 ```
@@ -213,7 +214,7 @@ where (job,mgr) in (select job,mgr from emp where ename in ('SCOTT','BLAKE'))
 and ename not in ('SCOTT','BLAKE');
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-9eeae1f58fa2e8f1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/13.png)   
 
 3. 查询不是经理的员工姓名。
 
@@ -227,7 +228,8 @@ where empno not in
 (select nvl(mgr,0) from emp);
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-48dbe3d53ccb7aab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](18-Images/14.png)   
 
 #### 此处要特别注意只要 (select mgr from emp) 语句返回只要有一条空则
 #### 则会导致主查询没有记录返回。这是因为所有的条件和空值比较结果都是空值。因此无论
@@ -242,7 +244,8 @@ select ename,hiredate
 from (select * from emp order by hiredate asc)
 where rownum <= 5;
 ```
-![](https://upload-images.jianshu.io/upload_images/5227364-e9b412bdcaa3e4fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![](18-Images/15.png)   
 
 
 2. 查询工作在CHICAGO并且入职日期最早的前2名员工姓名，入职日期。
@@ -278,11 +281,7 @@ where dept.loc in 'CHICAGO' and rownum <= 2
 order by hiredate;
 ```
 
-
-
-
-
-![](https://upload-images.jianshu.io/upload_images/5227364-713f4132b917d712.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)    
+![](18-Images/16.png)   
 ## 练习六
 1. 按照每页显示5条记录，分别查询第1页，第2页，第3页信息，要求显示员工姓名、入职日期、部门名称。
 ```
@@ -298,7 +297,7 @@ on emp.deptno = dept.deptno where rownum < 6 )
 
 where rn > 0;
 ```
-![](https://upload-images.jianshu.io/upload_images/5227364-eb97809f9783385c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/17.png)   
 
 ```
 第二页
@@ -313,7 +312,7 @@ on emp.deptno = dept.deptno where rownum < 11 )
 
 where rn > 5;
 ```
-![](https://upload-images.jianshu.io/upload_images/5227364-40528f47ed10599b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/18.png)   
 
 ```
 第三页
@@ -329,15 +328,84 @@ on emp.deptno = dept.deptno where rownum < 16 )
 where rn > 10;
 ```
 
-![](https://upload-images.jianshu.io/upload_images/5227364-62054cfca59fef03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/19.png) 
 
 ## 练习七
 1. 按照每页显示5条记录，分别查询工资最高的第1页，第2页，第3页信息，要求显示员工姓名、入职日期、部门名称、工资。
 
+```
+-- 第一步：将其所有的结果查出
+select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc;
+-- 第二步：将第一步的结果作为一个表再次进行查询,
+--将将伪列重命名为一个列，此表可以作为制最大数值的表
+
+select rownum rn tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate;
+-- 比如此处可以添一句where rownum <= maxNum 
+-- 而若想分页则可以将以上的集合再判断 rn > minNum
+
+
+
+-- 第三步：以上结果再次作业一个表进行分页
+
+-- 第一页：0~5
+select * from
+(select rownum rn,tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate
+where rownum <= 5)
+where rn > 0;
+
+--第二页：5~10
+select * from
+(select rownum rn,tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate
+where rownum <= 10)
+where rn > 5;
+-- 第三页: 11~15
+select * from
+(select rownum rn,tab_allDate.* from 
+(select ename,hiredate,dname,sal
+from emp,dept
+where emp.deptno = dept.deptno
+order by sal desc) tab_allDate
+where rownum <= 15)
+where rn > 10;
+```
+![](18-Images/100.png)
+![](18-Images/101.png)
+![](18-Images/102.png)
+
 ## 课后作业
 1. 查询工资高于编号为7782的员工工资，并且和7369号员工从事相同工作的员工的编号、姓名及工资。
+
+```
+select empno,ename,sal,job
+from emp 
+where sal > (select sal from emp where empno in 7782)
+and job in (select job from emp where empno in 7369);
+```
+![](18-Images/103.png)
 2. 查询工资最高的员工姓名和工资。 
+```
+select ename,sal
+from emp
+where sal in (select max(sal) from emp);
+```
+![](18-Images/104.png)
 3. 查询部门最低工资高于10号部门最低工资的部门的编号、名称及部门最低工资。
+
 4. 查询员工工资为其部门最低工资的员工的编号和姓名及工资。
 5. 显示经理是KING的员工姓名，工资。
 6. 显示比员工SMITH参加工作时间晚的员工姓名，工资，参加工作时间。
@@ -368,4 +436,4 @@ where rn > 10;
 ==================================================================
 **博主为咯学编程：父母不同意学编程，现已断绝关系;恋人不同意学编程，现已分手;亲戚不同意学编程，现已断绝来往;老板不同意学编程,现已失业三十年。。。。。。如果此博文有帮到你欢迎打赏，金额不限。。。**
 
-![](https://upload-images.jianshu.io/upload_images/5227364-e76764b127f255ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](18-Images/pay.png)
