@@ -1,0 +1,62 @@
+1
+1）必须由字母开始，长度在1-30个字符之间
+
+2）包含字母、数字、_、$、#
+
+3）同一个Oracle服务器所拥有的对象名不能重复
+
+4）名字不能为Oracle 的保留字
+
+5）大小写不敏感
+2
+DQL（数据查询语言）select
+
+DML（数据操作语言）insert、delete、update
+
+DDL（数据定义语言）create、drop、alter
+
+DCL（数据控制语言）grant：把权限授予用户、revoke：把权限从用户收回
+
+TPL（TCL，事务控制语言）：commit、rollback
+3
+length长度、lower小写、upper大写、to_date转化日期、to_char转化字符、to_number转化数字Ltrim去左边空格、rtrim去右边空格、substr截取字符串、add_month增加或减掉月份
+
+4
+SELECT?Ename FROM?emp where?months_between(sysdate,hire_date)?>?10*12
+5
+add_months,next_day,last_day)
+
+selectename,hiredate, ADD_MONTHS(hiredate,6) new_date,??
+
+NEXT_DAY(ADD_MONTHS(hiredate,6),'星期一'),
+
+NEXT_DAY(ADD_MONTHS(hiredate,6),'星期一'),
+
+LAST_DAY(ADD_MONTHS(hiredate,6))
+
+from emp
+
+where job <>'MANAGER';
+第6题：
+selectename,length(ename) from emp? wheredeptno in (10,20)
+and? instr(ename,'A')>0 ?OR ?instr(ename,'a') >0? and hiredate ?> '1-5月-81'
+第7题：
+select *
+from cinema
+where mod(id, 2) = 1 and description != 'boring'
+order by rating DESC
+;
+第8题
+select FirstName, LastName, City, State
+from Person left join Address
+on Person.PersonId = Address.PersonId
+;
+没有地址的人
+select p.FirstName, p.LastName,a.City, a.State
+ from Person p,Address a 
+where p.PersonId=a.PersonId(+);
+
+
+select deptno,deptname,job,count(1),max(sal),min(sal),sum(sal),avg(sal) from dept grounp by deptno,job
+ select e.ename,e.job,d.dname,avgsal from emp e,dept d,
+(select avg(sal) as avgsal,job from emp grounp by job) b where b.job=e.job and e.deptno=d.deptno; 
