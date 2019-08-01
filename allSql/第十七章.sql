@@ -1,0 +1,62 @@
+-----------------第十七章 用户、权限、角色-----
+
+--创建用户
+--缺失登录权限
+create user xiaoming identified by 123456;
+
+
+--给用户登录权限
+grant create session to xiaoming;
+
+--刚创建好的用户没有任何数据库权限 可以给相应的操作授权
+grant create table to xiaoming;
+--创建表之后 ， 没有空间给他插入数据；
+alter user xiaoming quota 10m on users;
+
+--删除用户
+drop user xiaoming;
+
+--角色是一个权限的集合 
+--角色可以重复利用
+--把角色赋予给一个用户之后，该用户就拥有咯该角色的全部权限
+grant dba as xiaoming;
+
+
+--22. 显示出工资大于平均工资的员工姓名，工资
+select ename,sal from emp 
+where sal > (select avg(sal) from emp);
+--23. 显示出工资大于本部门平均工资的员工姓名，工资
+select ename,sal from emp e
+where sal > (select avg(sal) from emp where deptno = e.deptno);
+--24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
+select e.mgr,min(e.sal) from emp e,emp m where e.mgr = m.empno group by e.mgr
+
+select * from emp e,(select e.mgr,min(e.sal) minsal from emp e,emp m where e.mgr = m.empno group by e.mgr) s
+where e.mgr = s.mgr and e.sal = s.minsal;
+--25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
+select hiredate from emp where sal = (select max(sal) from emp);
+
+select ename,hiredate from emp where hiredate >
+(select hiredate from emp where sal = (select max(sal) from emp));
+
+--26. 显示出平均工资最高的的部门平均工资及部门名称
+select max(avg(sal)) from emp group by deptno;
+
+
+
+select avg(sal),d.dname from emp e,dept d
+where e.deptno = d.deptno group by
+d.dname having avg(sal) = (select max(avg(sal)) from emp group by deptno);
+
+
+
+
+
+
+
+
+
+
+
+
+
