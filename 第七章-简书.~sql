@@ -399,14 +399,12 @@ where sal in (select max(sal) from emp);
 --3. 查询部门最低工资高于10号部门最低工资的部门的编号、
 --名称及部门最低工资。
 --第一步：查询部门最低工资
-select min(sal) from emp group by deptno;
+select emp.deptno,dname,min(sal) from emp,dept
+where emp.deptno = dept.deptno;
 --第二步：查询10号部门的最低工资
 select min(sal) from emp where deptno in 10;
 --第三步：解题
-select deptno,dname,min(sal)
-from emp,dept
-where (select min(sal) from emp where deptno in 10)
-< any (select min(sal) from emp group by deptno)
+select emp.deptno,dname,min
 
 
 
