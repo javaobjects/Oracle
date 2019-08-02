@@ -507,17 +507,19 @@ from emp
 group by deptno
 having count(*) > 0;
 
-
 --15. 列出薪金比"SMITH"多的所有雇员
 select * from emp
 where sal > (select sal from emp where ename in 'SMITH');
 
-
+--16. 列出入职日期早于其直接上级的所有雇员
+select worker.ename,worker.hiredate
+from emp worker,emp manager
+where worker.mgr in manager.empno
+and worker.hiredate < manager.hiredate;
 
 
 select * from emp;
 select * from dept;
---16. 列出入职日期早于其直接上级的所有雇员
 --17. 找员工姓名和直接上级的名字
 --18. 显示部门名称和人数
 --19. 显示每个部门的最高工资的员工
