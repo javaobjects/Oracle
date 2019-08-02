@@ -468,10 +468,31 @@ from emp,dept
 where emp.deptno in dept.deptno
 and dname in 'RESEARCH';
 
+--12. 查询每个部门的部门编号、平均工资，要求部门的平均工资高于部门20的平均工资。
+
+--第一步：查询第个部门的部门编号，平均工资
+select deptno,avg(sal) avgSal_gb_deptno
+from emp
+group by deptno;
+--第二步：查询部门20的平均工资
+select deptno,avg(sal) avgSal_gb_deptno_20
+from emp
+group by deptno
+having deptno in 20;
+--第三步：解题 
+select deptno,avg(sal)
+from emp
+group by deptno
+having avg(sal) > 
+(select avg(sal)
+from emp
+group by deptno
+having deptno in 20);
+
+
 
 select * from emp;
 select * from dept;
---12. 查询每个部门的部门编号、平均工资，要求部门的平均工资高于部门20的平均工资。
 --13. 查询大于自己部门平均工资的员工姓名，工资，所在部门平均工资，高于部门平均工资的额度。
 --14. 列出至少有一个雇员的所有部门
 --15. 列出薪金比"SMITH"多的所有雇员
