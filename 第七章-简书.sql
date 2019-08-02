@@ -416,14 +416,15 @@ from (select min(sal) minSal_by_deptno,deptno from emp group by deptno) tab_minS
 (select min(sal) minSal_deptno10 from emp where deptno in 10),dept
 where tab_minSal_gb_deptno.deptno = dept.deptno 
 and minSal_by_deptno > minSal_deptno10;
+--4. 查询员工工资为其部门最低工资的员工的编号和姓名及工资。
 
-
-
-
-
-
-
-
+--第一步：先查部门的最低工资
+select deptno,min(sal) from emp group by deptno;
+--第二步：将上面的结果集作为一个表，进行多表查询
+select empno,ename,sal 
+from emp,(select deptno,min(sal) minSal_gb_deptno from emp group by deptno) tab_minSal_gb_deptno
+where emp.deptno = tab_minSal_gb_deptno.deptno
+and sal = minSal_gb_deptno;
 
 
 
@@ -431,7 +432,6 @@ and minSal_by_deptno > minSal_deptno10;
 
 select * from emp;
 select * from dept;
---4. 查询员工工资为其部门最低工资的员工的编号和姓名及工资。
 --5. 显示经理是KING的员工姓名，工资。
 --6. 显示比员工SMITH参加工作时间晚的员工姓名，工资，参加工作时间。
 --7. 使用子查询的方式查询哪些职员在NEW YORK工作。
