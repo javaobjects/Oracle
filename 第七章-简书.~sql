@@ -489,11 +489,25 @@ from emp
 group by deptno
 having deptno in 20);
 
+--13. 查询大于自己部门平均工资的员工姓名，工资，所在部门平均工资，高于部门平均工资的额度。
+
+--第一步：查询自己部门的平均工资
+select deptno,avg(sal) from emp group by deptno;
+--第二步：将以上结果作为一个表进行多表查询
+
+select ename,sal,avgSal_gb_deptno,(sal - avgSal_gb_deptno) 高于平均工资的差值
+from emp,
+(select deptno,avg(sal) avgSal_gb_deptno from emp group by deptno) tab_gb_deptno
+where emp.deptno in tab_gb_deptno.deptno
+and sal > avgSal_gb_deptno;
+
+
+
+
 
 
 select * from emp;
 select * from dept;
---13. 查询大于自己部门平均工资的员工姓名，工资，所在部门平均工资，高于部门平均工资的额度。
 --14. 列出至少有一个雇员的所有部门
 --15. 列出薪金比"SMITH"多的所有雇员
 --16. 列出入职日期早于其直接上级的所有雇员
