@@ -404,7 +404,25 @@ where emp.deptno = dept.deptno;
 --第二步：查询10号部门的最低工资
 select min(sal) from emp where deptno in 10;
 --第三步：解题
-select emp.deptno,dname,min
+
+--第一种 解题方式：
+select emp.deptno,dname,min(sal) from emp,dept
+where emp.deptno = dept.deptno
+group by emp.deptno,dname --group by是所有列必须出现在后边
+having min(sal) > (select min(sal) from emp where deptno in 10);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
