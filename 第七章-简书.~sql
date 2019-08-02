@@ -433,7 +433,21 @@ select ename,sal
 from emp
 where mgr in (select empno from emp where ename in 'KING')
 --6. 显示比员工SMITH参加工作时间晚的员工姓名，工资，参加工作时间。
+--第一步：先查出SMITH参加工作的时间
+select hiredate from emp where ename in 'SMITH';
+--第二步：解题 
+select ename,sal,hiredate
+from emp
+where hiredate > (select hiredate from emp where ename in 'SMITH');
+
 --7. 使用子查询的方式查询哪些职员在NEW YORK工作。
+select * from emp,dept
+where emp.deptno in dept.deptno
+and loc in 'NEW YORK';
+
+
+select * from emp;
+select * from dept;
 --8. 写一个查询显示和员工SMITH工作在同一个部门的员工姓名，雇用日期，查询结果中排除SMITH。
 --9. 写一个查询显示其工资比全体职员平均工资高的员工编号、姓名。
 --10. 写一个查询显示其上级领导是King的员工姓名、工资。
