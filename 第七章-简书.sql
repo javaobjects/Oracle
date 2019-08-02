@@ -452,12 +452,15 @@ where emp.deptno in dept.deptno
 and emp.deptno in (select deptno from emp where ename in 'SMITH')
 and ename not in 'SMITH';
 
+--9. 写一个查询显示其工资比全体职员平均工资高的员工编号、姓名。
+select empno,ename
+from emp
+where sal > (select avg(sal) from emp);
 
 
 
 select * from emp;
 select * from dept;
---9. 写一个查询显示其工资比全体职员平均工资高的员工编号、姓名。
 --10. 写一个查询显示其上级领导是King的员工姓名、工资。
 --11. 显示所有工作在RESEARCH部门的员工姓名，职位。
 --12. 查询每个部门的部门编号、平均工资，要求部门的平均工资高于部门20的平均工资。
