@@ -501,6 +501,12 @@ from emp,
 where emp.deptno in tab_gb_deptno.deptno
 and sal > avgSal_gb_deptno;
 
+--14. 列出至少有一个雇员的所有部门
+select deptno,count(1)
+from emp
+group by deptno
+having count(*) > 0;
+
 
 
 
@@ -508,7 +514,6 @@ and sal > avgSal_gb_deptno;
 
 select * from emp;
 select * from dept;
---14. 列出至少有一个雇员的所有部门
 --15. 列出薪金比"SMITH"多的所有雇员
 --16. 列出入职日期早于其直接上级的所有雇员
 --17. 找员工姓名和直接上级的名字
