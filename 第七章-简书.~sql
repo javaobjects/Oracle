@@ -517,10 +517,15 @@ from emp worker,emp manager
 where worker.mgr in manager.empno
 and worker.hiredate < manager.hiredate;
 
+--17. 找员工姓名和直接上级的名字
+select worker.ename 员工姓名,manager.ename 直接上级姓名
+from emp worker,emp manager
+where worker.mgr in manager.empno(+);
+
+
 
 select * from emp;
 select * from dept;
---17. 找员工姓名和直接上级的名字
 --18. 显示部门名称和人数
 --19. 显示每个部门的最高工资的员工
 --20. 显示出和员工号7369部门相同的员工姓名，工资
