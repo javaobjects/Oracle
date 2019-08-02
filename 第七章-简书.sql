@@ -535,12 +535,18 @@ from emp
 group by deptno) tab_countNum_gb_deptno
 where dept.deptno in tab_countNum_gb_deptno.deptno(+);
 
+--19. 显示每个部门的最高工资的员工
+select ename,sal,deptno
+from emp
+where sal in
+(select max(sal) from emp group by deptno);
+
+--20. 显示出和员工号7369部门相同的员工姓名，工资
+
 
 
 select * from emp;
 select * from dept;
---19. 显示每个部门的最高工资的员工
---20. 显示出和员工号7369部门相同的员工姓名，工资
 --21. 显示出和姓名中包含"W"的员工相同部门的员工姓名
 --22. 显示出工资大于平均工资的员工姓名，工资
 --23. 显示出工资大于本部门平均工资的员工姓名，工资
