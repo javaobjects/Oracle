@@ -522,11 +522,23 @@ select worker.ename 员工姓名,manager.ename 直接上级姓名
 from emp worker,emp manager
 where worker.mgr in manager.empno(+);
 
+--18. 显示部门名称和人数
+--第一步：先查出部门人数
+select count(*) countNum,deptno
+from emp
+group by deptno;
+--第二步：以上面的查询结果作一个表，多表查询
+select dname,countNum
+from dept,(
+select count(*) countNum,deptno
+from emp
+group by deptno) tab_countNum_gb_deptno
+where dept.deptno in tab_countNum_gb_deptno.deptno(+);
+
 
 
 select * from emp;
 select * from dept;
---18. 显示部门名称和人数
 --19. 显示每个部门的最高工资的员工
 --20. 显示出和员工号7369部门相同的员工姓名，工资
 --21. 显示出和姓名中包含"W"的员工相同部门的员工姓名
