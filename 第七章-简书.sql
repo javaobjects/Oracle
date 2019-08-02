@@ -445,10 +445,18 @@ select * from emp,dept
 where emp.deptno in dept.deptno
 and loc in 'NEW YORK';
 
+--8. 写一个查询显示和员工SMITH工作在同一个部门的员工姓名，雇用日期，查询结果中排除SMITH。
+select ename,hiredate
+from emp,dept
+where emp.deptno in dept.deptno
+and emp.deptno in (select deptno from emp where ename in 'SMITH')
+and ename not in 'SMITH';
+
+
+
 
 select * from emp;
 select * from dept;
---8. 写一个查询显示和员工SMITH工作在同一个部门的员工姓名，雇用日期，查询结果中排除SMITH。
 --9. 写一个查询显示其工资比全体职员平均工资高的员工编号、姓名。
 --10. 写一个查询显示其上级领导是King的员工姓名、工资。
 --11. 显示所有工作在RESEARCH部门的员工姓名，职位。
