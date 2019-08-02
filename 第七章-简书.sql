@@ -546,10 +546,19 @@ select ename,sal
 from emp
 where deptno in (select deptno from emp where empno in 7369);
 
+--21. 显示出和姓名中包含"W"的员工相同部门的员工姓名
+--第一步：先查出姓名中包含"W"的员工部门
+select deptno from emp where ename like '%W%';
+--第二步：解题 
+select ename
+from emp 
+where deptno in
+ (select deptno from emp where ename like '%W%')
+
+
 
 select * from emp;
 select * from dept;
---21. 显示出和姓名中包含"W"的员工相同部门的员工姓名
 --22. 显示出工资大于平均工资的员工姓名，工资
 --23. 显示出工资大于本部门平均工资的员工姓名，工资
 --24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
