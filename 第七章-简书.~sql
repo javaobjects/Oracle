@@ -560,11 +560,20 @@ select ename,sal
 from emp 
 where sal > (select avg(sal) from emp);
 
+--23. 显示出工资大于本部门平均工资的员工姓名，工资
+--第一步：查询本部门的平均工资
+select avg(sal),deptno from emp group by deptno;
+--第二步：解题
+select ename,sal
+from emp,(select avg(sal) avgSal_gb_deptno,deptno from emp group by deptno) tab_avgSal_gb_deptno
+where emp.deptno in tab_avgSal_gb_deptno.deptno
+and sal > avgSal_gb_deptno;
+
+
 
 
 select * from emp;
 select * from dept;
---23. 显示出工资大于本部门平均工资的员工姓名，工资
 --24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
 --25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
 --26. 显示出平均工资最高的的部门平均工资及部门名称
