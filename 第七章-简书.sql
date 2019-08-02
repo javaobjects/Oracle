@@ -410,9 +410,12 @@ select emp.deptno,dname,min(sal) from emp,dept
 where emp.deptno = dept.deptno
 group by emp.deptno,dname --group by是所有列必须出现在后边
 having min(sal) > (select min(sal) from emp where deptno in 10);
-
-
-
+--第二种 解题方式：
+select tab_minSal_gb_deptno.deptno,dname,tab_minSal_gb_deptno.minSal_by_deptno
+from (select min(sal) minSal_by_deptno,deptno from emp group by deptno) tab_minSal_gb_deptno,
+(select min(sal) minSal_deptno10 from emp where deptno in 10),dept
+where tab_minSal_gb_deptno.deptno = dept.deptno 
+and minSal_by_deptno > minSal_deptno10;
 
 
 
