@@ -462,10 +462,15 @@ select ename,sal
 from emp
 where mgr in (select empno from emp where ename in 'KING');
 
+--11. 显示所有工作在RESEARCH部门的员工姓名，职位。
+select ename,job
+from emp,dept
+where emp.deptno in dept.deptno
+and dname in 'RESEARCH';
+
 
 select * from emp;
 select * from dept;
---11. 显示所有工作在RESEARCH部门的员工姓名，职位。
 --12. 查询每个部门的部门编号、平均工资，要求部门的平均工资高于部门20的平均工资。
 --13. 查询大于自己部门平均工资的员工姓名，工资，所在部门平均工资，高于部门平均工资的额度。
 --14. 列出至少有一个雇员的所有部门
