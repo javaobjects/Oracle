@@ -555,11 +555,15 @@ from emp
 where deptno in
  (select deptno from emp where ename like '%W%')
 
+--22. 显示出工资大于平均工资的员工姓名，工资
+select ename,sal
+from emp 
+where sal > (select avg(sal) from emp);
+
 
 
 select * from emp;
 select * from dept;
---22. 显示出工资大于平均工资的员工姓名，工资
 --23. 显示出工资大于本部门平均工资的员工姓名，工资
 --24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
 --25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
