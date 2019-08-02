@@ -542,7 +542,9 @@ where sal in
 (select max(sal) from emp group by deptno);
 
 --20. 显示出和员工号7369部门相同的员工姓名，工资
-
+select ename,sal 
+from emp
+where deptno in (select deptno from emp where empno in 7369);
 
 
 select * from emp;

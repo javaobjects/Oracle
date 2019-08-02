@@ -542,6 +542,13 @@ where sal in
 (select max(sal) from emp group by deptno);
 
 --20. 显示出和员工号7369部门相同的员工姓名，工资
+select ename,sal 
+from emp
+where deptno in (select deptno from emp where empno in 7369);
+
+
+select * from emp;
+select * from dept;
 --21. 显示出和姓名中包含"W"的员工相同部门的员工姓名
 --22. 显示出工资大于平均工资的员工姓名，工资
 --23. 显示出工资大于本部门平均工资的员工姓名，工资
