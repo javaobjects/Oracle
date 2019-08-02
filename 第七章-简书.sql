@@ -508,13 +508,15 @@ group by deptno
 having count(*) > 0;
 
 
+--15. 列出薪金比"SMITH"多的所有雇员
+select * from emp
+where sal > (select sal from emp where ename in 'SMITH');
 
 
 
 
 select * from emp;
 select * from dept;
---15. 列出薪金比"SMITH"多的所有雇员
 --16. 列出入职日期早于其直接上级的所有雇员
 --17. 找员工姓名和直接上级的名字
 --18. 显示部门名称和人数
