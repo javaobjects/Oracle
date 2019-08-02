@@ -583,7 +583,16 @@ select ename,hiredate
 from emp
 where hiredate > (select hiredate from emp where sal in (select max(sal) from emp));
 
-
-select * from emp;
-select * from dept;
 --26. 显示出平均工资最高的的部门平均工资及部门名称
+--第一步：先查出部门平均工资及名称
+select avg(sal) avgSal,deptno from emp group by deptno;
+--第二步：解题 
+--方法一
+select * from (select dname,avg(sal) avgsal from emp e,dept d where e.deptno = d.deptno group by dname)
+where avgsal = (select max(avg(sal)) from emp group by deptno);
+
+--方法二
+select dname,avg(sal)  from emp e,dept d 
+where e.deptno = d.deptno 
+group by dname 
+having avg(sal) =(select max(avg(sal)) from emp group by deptno);
