@@ -569,11 +569,17 @@ from emp,(select avg(sal) avgSal_gb_deptno,deptno from emp group by deptno) tab_
 where emp.deptno in tab_avgSal_gb_deptno.deptno
 and sal > avgSal_gb_deptno;
 
-
+--24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
+--第一步：先查出每位经理管理的员工的最低工资
+select min(sal),mgr from emp where mgr is not null group by mgr;
+--第二步：解题 
+select sal,ename
+from emp,(select min(sal) minSal,mgr from emp where mgr is not null group by mgr) tab_minSal_gb_mgr
+where emp.mgr in tab_minSal_gb_mgr.mgr
+and sal in minSal;
 
 
 select * from emp;
 select * from dept;
---24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
 --25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
 --26. 显示出平均工资最高的的部门平均工资及部门名称

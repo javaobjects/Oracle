@@ -578,8 +578,12 @@ from emp,(select min(sal) minSal,mgr from emp where mgr is not null group by mgr
 where emp.mgr in tab_minSal_gb_mgr.mgr
 and sal in minSal;
 
+--25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
+select ename,hiredate
+from emp
+where hiredate > (select hiredate from emp where sal in (select max(sal) from emp));
+
 
 select * from emp;
 select * from dept;
---25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
 --26. 显示出平均工资最高的的部门平均工资及部门名称
