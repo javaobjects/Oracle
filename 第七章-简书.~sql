@@ -426,13 +426,12 @@ from emp,(select deptno,min(sal) minSal_gb_deptno from emp group by deptno) tab_
 where emp.deptno = tab_minSal_gb_deptno.deptno
 and sal = minSal_gb_deptno;
 --5. 显示经理是KING的员工姓名，工资。
-
-
-
-
-
-select * from emp;
-select * from dept;
+--第一步：先查出KING的员工编号
+select empno from emp where ename in 'KING';
+--第二步：解题 
+select ename,sal
+from emp
+where mgr in (select empno from emp where ename in 'KING')
 --6. 显示比员工SMITH参加工作时间晚的员工姓名，工资，参加工作时间。
 --7. 使用子查询的方式查询哪些职员在NEW YORK工作。
 --8. 写一个查询显示和员工SMITH工作在同一个部门的员工姓名，雇用日期，查询结果中排除SMITH。
