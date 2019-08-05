@@ -12,10 +12,10 @@ select ename,sal,emp.deptno from emp,
 (select avg(sal) avgSal,deptno from emp group by deptno) tab_avgSal
 where sal > avgSal and emp.deptno = tab_avgSal.deptno;
 --标准答案写法 ：
-SELECT empno,ename,sal
-FROM   emp e ,(SELECT deptno,avg(sal) avgsal               FROM emp               GROUP BY deptno) d
-WHERE e.deptno =d.deptno
-AND e.sal >d.avgsal;
+select empno,ename,sal
+from   emp e ,(select deptno,avg(sal) avgsal from emp group by deptno) d
+where e.deptno =d.deptno
+and e.sal >d.avgsal;
 
 
 
