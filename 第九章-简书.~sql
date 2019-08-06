@@ -64,15 +64,25 @@ where 1 >= (select count(*)
                    where outer.sal > sal
                    and  deptno = outer.deptno);
 
-select * from emp;
-select * from dept;
 --## 练习3
 
 --如下练习，用exists或not exists完成
 
 --1. 列出至少有一个雇员的所有部门名称。
+select dname
+from dept d
+where exists (select '1'
+                      from emp,dept
+                      where emp.deptno = dept.deptno
+                      and d.dname = dname);
 
 --2. 列出一个雇员都没有的所有部门名称。
+select dname
+from dept d
+where not exists (select '1'
+                      from emp,dept
+                      where emp.deptno = dept.deptno
+                      and d.dname = dname);
 
 --## 课后作业
 
@@ -80,6 +90,8 @@ select * from dept;
 
 --1. 查询薪水多于他所在部门平均薪水的雇员名字，部门号。
 
+select * from emp;
+select * from dept;
 --2. 查询员工姓名和直接上级的名字。
 
 --3. 查询每个部门工资最高的员工姓名，工资。
