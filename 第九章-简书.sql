@@ -17,19 +17,30 @@ from   emp e ,(select deptno,avg(sal) avgsal from emp group by deptno) d
 where e.deptno =d.deptno
 and e.sal >d.avgsal;
 
+--相关子查询解题
+select empno,ename,sal,deptno
+from emp outer
+where sal > (select avg(sal) from emp where deptno = outer.deptno);
+--父查询中的行每被处理一次，子查询就执行一次
 
-
-
-
-select * from emp;
-select * from dept;
 --## 练习1 
 
 --如下练习，使用相关子查询完成
 
 --1. 查询比所在职位平均工资高的员工姓名，职位。
+select ename,job
+from emp outer
+where sal > (select avg(sal) from emp where job = outer.job);
 
 --2. 查询工资为其部门最低工资的员工编号，姓名，工资。
+select empno,ename,sal
+from emp outer
+where sal = (select min(sal) from emp where deptno = outer.deptno);
+
+
+
+select * from emp;
+select * from dept;
 
 --## 练习2
 
