@@ -19,6 +19,9 @@ insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
 --## 练习3
 
 --1. 使用CREATE TABLE emp_back as  SELECT * FROM EMP WHERE 1=0，创建emp_back表,拷贝下来即可。
+create table emp_back
+as select * from emp where 1 = 0;
+
 
 
 select * from emp;
