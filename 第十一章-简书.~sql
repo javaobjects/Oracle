@@ -40,10 +40,19 @@ and hiredate > '01-1月-82';
 
 select * from emp_back;
 
+--2. 修改奖金为null的员工，奖金设置为0
+select * from emp_back;
+
+update emp_back
+set comm = 0
+where comm is null;
+
+select * from emp_back;
+
+
+
 select * from emp;
 select * from dept;
---2. 修改奖金为null的员工，奖金设置为0
-
 --3. 修改工作地点在NEW YORK或CHICAGO的员工工资，工资增加500
 
 --## 练习5
