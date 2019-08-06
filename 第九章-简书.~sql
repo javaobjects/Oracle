@@ -89,11 +89,30 @@ where not exists (select '1'
 --如下练习，使用相关子查询完成。
 
 --1. 查询薪水多于他所在部门平均薪水的雇员名字，部门号。
+select ename,deptno
+from emp outer
+where sal > (select avg(sal)
+                    from emp
+                    where outer.deptno = deptno);
 
-select * from emp;
-select * from dept;
 --2. 查询员工姓名和直接上级的名字。
+select ename,(select ename 
+                     from emp
+                     where outer.mgr = empno)
+                     直接上级
+from emp outer;
 
 --3. 查询每个部门工资最高的员工姓名，工资。
+select ename,sal,deptno
+from emp outer
+where sal = (select max(sal)
+                    from emp
+                    where outer.deptno = deptno);
 
 --4. 查询每个部门工资前两名高的员工姓名，工资。
+select ename,sal,deptno
+from emp outer
+where 1 >= (select count(*)
+                   from emp
+                   where outer.deptno = deptno
+                   and outer.sal > sal);
