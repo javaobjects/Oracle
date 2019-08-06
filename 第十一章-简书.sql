@@ -10,17 +10,19 @@ insert into dept(deptno,dname)
 
 --## 练习2
 
---1. 向员工表中新增一个员工，员工编号为8888，姓名为BOB，岗位为CLERK，经理为号7788，入职日期为1985-03-03，薪资3000，奖金和部门为空。
-       
-       
-       
-       
-select * from emp;
-select * from dept;
+--1. 向员工表中新增一个员工，员工编号为8888，姓名为BOB，岗位为CLERK，经理为号7788，
+--入职日期为1985-03-03，薪资3000，奖金和部门为空。
+insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
+            values(8888,'BOB','CLERK',7788
+            ,to_date('1985-03-03','yyyy/mm/dd'),3000,null,null);
+
 --## 练习3
 
 --1. 使用CREATE TABLE emp_back as  SELECT * FROM EMP WHERE 1=0，创建emp_back表,拷贝下来即可。
 
+
+select * from emp;
+select * from dept;
 --2. 把emp表中入职日期大于1982年1月1日之前的员工信息复制到emp_back表中。
 
 --## 练习4
