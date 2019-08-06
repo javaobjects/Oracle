@@ -1,13 +1,22 @@
 --## 练习1
 
 --1. 向部门表新增一个部门，部门编号为50，部门名称为HR，工作地点为SY。
+insert into dept(deptno,dname,loc)
+       values(50,'HR','SY');
 
 --2. 向部门表新增一个部门，部门编号为60，部门名称为MARKET。
+insert into dept(deptno,dname)
+       values(60,'MARKET');
 
 --## 练习2
 
 --1. 向员工表中新增一个员工，员工编号为8888，姓名为BOB，岗位为CLERK，经理为号7788，入职日期为1985-03-03，薪资3000，奖金和部门为空。
-
+       
+       
+       
+       
+select * from emp;
+select * from dept;
 --## 练习3
 
 --1. 使用CREATE TABLE emp_back as  SELECT * FROM EMP WHERE 1=0，创建emp_back表,拷贝下来即可。
