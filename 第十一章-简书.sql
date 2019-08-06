@@ -28,17 +28,20 @@ insert into emp_back
             from emp
             where hiredate > '01-1月-82';
 
-
-select * from emp where hiredate > '01-1月-82';
-
-
-select * from emp_back;
-select * from emp;
-select * from dept;
 --## 练习4
 
 --1. 修改部门20的员工信息，把82年之后入职的员工入职日期向后调整10天
+select * from emp_back;
 
+update emp_back
+set hiredate = hiredate + 10
+where deptno in 20
+and hiredate > '01-1月-82';
+
+select * from emp_back;
+
+select * from emp;
+select * from dept;
 --2. 修改奖金为null的员工，奖金设置为0
 
 --3. 修改工作地点在NEW YORK或CHICAGO的员工工资，工资增加500
