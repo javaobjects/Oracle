@@ -49,12 +49,20 @@ where comm is null;
 
 select * from emp_back;
 
+--3. 修改工作地点在NEW YORK或CHICAGO的员工工资，工资增加500
+select * from emp_back;
 
+update emp_back
+set sal = sal + 500
+where (select loc
+              from dept
+              where dept.deptno = emp_back.deptno)
+              in ('NEW YORK','CHICAGO'); 
+              
+select * from emp_back;
 
 select * from emp;
 select * from dept;
---3. 修改工作地点在NEW YORK或CHICAGO的员工工资，工资增加500
-
 --## 练习5
 
 --1. 重复做一下刚才的案例。
