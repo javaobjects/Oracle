@@ -37,23 +37,35 @@ select empno,ename,sal
 from emp outer
 where sal = (select min(sal) from emp where deptno = outer.deptno);
 
-
-
-select * from emp;
-select * from dept;
-
 --## 练习2
 
 --如下练习，用相关子查询完成
 
 --1. 查询所有雇员编号，名字和部门名字。
+select empno,ename,
+(select dname from dept where emp.deptno = deptno) dname
+from emp;
 
 --2. 查询哪些员工是经理？
+select * from emp e
+where 0 < (select count(*) from emp 
+           where mgr = e.empno);
 
 --3. 查询哪些员工不是经理？
+select * from emp e
+where 0 = (select count(*) from emp 
+           where mgr = e.empno);
 
 --4. 查询每个部门工资最低的两个员工编号，姓名，工资。 
+select empno,ename,sal,deptno
+from emp outer
+where 1 >= (select count(*)
+                   from emp
+                   where outer.sal > sal
+                   and  deptno = outer.deptno);
 
+select * from emp;
+select * from dept;
 --## 练习3
 
 --如下练习，用exists或not exists完成
