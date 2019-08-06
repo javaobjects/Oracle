@@ -22,12 +22,19 @@ insert into emp(empno,ename,job,mgr,hiredate,sal,comm,deptno)
 create table emp_back
 as select * from emp where 1 = 0;
 
+--2. 把emp表中入职日期大于1982年1月1日之前的员工信息复制到emp_back表中。
+insert into emp_back
+            select * 
+            from emp
+            where hiredate > '01-1月-82';
 
 
+select * from emp where hiredate > '01-1月-82';
+
+
+select * from emp_back;
 select * from emp;
 select * from dept;
---2. 把emp表中入职日期大于1982年1月1日之前的员工信息复制到emp_back表中。
-
 --## 练习4
 
 --1. 修改部门20的员工信息，把82年之后入职的员工入职日期向后调整10天
