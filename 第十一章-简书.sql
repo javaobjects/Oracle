@@ -226,14 +226,14 @@ insert into tab_student_11
 --（3）添加学生信息如下：'A002','MIKE','男','1905-05-06',10
 insert into tab_student_11
             values('A002','MIKE','男','06-5月-1905',10,null);
-
+--（4）插入部分学生信息： 'A003','JOHN','女’
+insert into tab_student_11(xh,xm,sex)
+            values('A003','JOHN','女');
 
 
 
 select * from tab_student_11;
 select * from tab_class_11;
---（4）插入部分学生信息： 'A003','JOHN','女’
-
 --（5）将A001学生性别修改为'女‘
 
 --（6）将A001学生信息修改如下：性别为男，生日设置为1980-04-01
