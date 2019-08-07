@@ -143,8 +143,6 @@ select * from emp_back;
 
 --1. test表为空表，分析如下语句操作后，最后test表的状态。
 
-select * from emp;
-select * from dept;
 --    INSERT INTO test(id,name) values(1, 'a')；
 --    INSERT INTO test(id,name) values(2, 'b')；
 --    SAVEPOINT s1;
@@ -153,8 +151,15 @@ select * from dept;
 --    DELETE FROM test WHERE id in (1,3);
 --    ROLLBACK TO s1;
 --    DELETE FROM test WHERE id in (2,4);
---    COMMIT;
+--    COMMIT; --提交就不能回滚咯 表中只有 values(1, 'a')
 --    ROLLBACK;
+
+
+
+
+
+select * from emp;
+select * from dept;
 --## 练习9
 
 --分析如下两个会话，执行完每一步时的数据库状态。
