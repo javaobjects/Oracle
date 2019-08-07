@@ -193,19 +193,19 @@ select * from emp_back;
 --1.使用如下语句，创建学生表student和班级表class
 
 
---    create table student (        --学生表
---                xh char(4),--学号
---                xm varchar2(10),--姓名
---                sex char(2),--性别
---                birthday date,--出生日期
---                sal number(7,2), --奖学金
---                studentcid number(2) --学生班级号
---    )
---    Create table class (   --班级表
---                classid number(2), --班级编号
---                cname varchar2(20),--班级名称
---                ccount  number(3) --班级人数
---    )
+   create table tab_student_11 (        --学生表
+               xh char(4),--学号
+               xm varchar2(10),--姓名
+               sex char(2),--性别
+               birthday date,--出生日期
+               sal number(7,2), --奖学金
+               studentcid number(2) --学生班级号
+    );
+   create table tab_class_11 (   --班级表
+                classid number(2), --班级编号
+                cname varchar2(20),--班级名称
+                ccount  number(3) --班级人数
+    )
 
 
 
@@ -214,8 +214,8 @@ select * from emp_back;
 
 
 
-select * from emp;
-select * from dept;
+select * from tab_student_11;
+select * from tab_class_11;
 --2. 基于上述学生表和班级表，完成如下问题
 
 --（1）添加三个班级信息为：1，JAVA1班，null
