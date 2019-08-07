@@ -265,7 +265,8 @@ insert into copy_emp
        values(520,'heheda','01-1月-00',50,null);
 
 --(2)在表copy_emp中插入数据，要求把emp表中部门号为10号部门的员工信息插入
-
+insert into copy_emp
+       select empno,ename,hiredate,deptno,sal from emp where deptno in 10;
 
 select * from copy_emp;
 --(3)修改copy_emp表中数据，要求10号部门所有员工涨20%的工资
