@@ -284,5 +284,7 @@ select * from copy_emp;
 commit;
 select * from copy_emp;
 --(8)删除工资为空的员工信息
-
+delete from copy_emp
+       where sal is null;
+select * from copy_emp;
 --(9)执行rollback
