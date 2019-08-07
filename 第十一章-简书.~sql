@@ -75,17 +75,36 @@ set dname =
 
 select * from emp_back;
 
-
-
-select * from emp;
-select * from dept;
 --## 练习6
 
 --1. 删除经理编号为7566的员工记录
+select * from emp_back;
+
+delete from emp_back
+where mgr in 7566;
+
+select * from emp_back;
 
 --2. 删除工作在NEW YORK的员工记录
+select * from emp_back;
+
+delete from emp_back 
+where (select loc 
+              from dept 
+              where dept.deptno=emp_back.deptno)
+              in 'NEW YORK';
+
+select * from emp_back;
 
 --3. 删除工资大于所在部门平均工资的员工记录
+select * from emp_back;
+
+delete from emp_back eb
+where sal > (select avg(sal)
+                    from emp_back
+                    where eb.deptno = emp_back.deptno);
+
+select * from emp_back;
 
 --## 练习7
 
@@ -97,7 +116,7 @@ select * from dept;
 
 --    INSERT
 
---    ROLLBACK;
+--    ROLLBACK; --结束事务
 
 --    DELETE..
 
@@ -105,7 +124,7 @@ select * from dept;
 
 --    SELECT..
 
---    COMMIT..
+--    COMMIT.. --结束事务
 
 --    INSERT..
 
@@ -113,7 +132,7 @@ select * from dept;
 
 --    DELETE..
 
---    GRANT..
+--    GRANT.. --结束事务
 
 --    INSERT..
 
@@ -124,6 +143,8 @@ select * from dept;
 
 --1. test表为空表，分析如下语句操作后，最后test表的状态。
 
+select * from emp;
+select * from dept;
 --    INSERT INTO test(id,name) values(1, 'a')；
 --    INSERT INTO test(id,name) values(2, 'b')；
 --    SAVEPOINT s1;
