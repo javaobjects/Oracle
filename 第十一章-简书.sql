@@ -230,14 +230,15 @@ insert into tab_student_11
 insert into tab_student_11(xh,xm,sex)
             values('A003','JOHN','女');
 
+--（5）将A001学生性别修改为'女‘
+update tab_student_11 set sex = '女'
+       where xh = 'A001';
+
+--（6）将A001学生信息修改如下：性别为男，生日设置为1980-04-01
 
 
 select * from tab_student_11;
 select * from tab_class_11;
---（5）将A001学生性别修改为'女‘
-
---（6）将A001学生信息修改如下：性别为男，生日设置为1980-04-01
-
 --（7）将生日为空的学生班级修改为Java3班
 
 --（8）请使用一条SQL语句，使用子查询，更新班级表中每个班级的人数字段
