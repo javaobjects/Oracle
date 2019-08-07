@@ -288,3 +288,5 @@ delete from copy_emp
        where sal is null;
 
 --(9)Ö´ÐÐrollback
+rollback;
+select * from copy_emp;
