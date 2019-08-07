@@ -61,12 +61,24 @@ where (select loc
               
 select * from emp_back;
 
-select * from emp;
-select * from dept;
 --## 练习5
 
 --1. 重复做一下刚才的案例。
+--例1.在emp_back表中增加一个列dname, 来存储部门名称.alter table emp_back
+add(dname varchar2(14));
+--例2.使用相关子查询更新dname列为正确的部门名称.
+update emp_back e
+set dname = 
+           (select dname
+           from dept d
+           where deptno = e.deptno);
 
+select * from emp_back;
+
+
+
+select * from emp;
+select * from dept;
 --## 练习6
 
 --1. 删除经理编号为7566的员工记录
