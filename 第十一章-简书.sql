@@ -281,7 +281,8 @@ update copy_emp set sal = null
 --(6)另外打开窗口2查看以上修改
 select * from copy_emp;
 --(7)执行commit，窗口2中再次查看以上信息
-
+commit;
+select * from copy_emp;
 --(8)删除工资为空的员工信息
 
 --(9)执行rollback
