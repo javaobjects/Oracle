@@ -244,7 +244,9 @@ update tab_student_11 set studentcid = 3
                       where birthday is null;
 
 --（8）请使用一条SQL语句，使用子查询，更新班级表中每个班级的人数字段
-
+update tab_class_11 set ccount =
+                    (select count(*) from tab_student_11
+                            where tab_class_11.classid = tab_student_11.studentcid);
 
 select * from tab_student_11;
 select * from tab_class_11;
