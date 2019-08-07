@@ -220,6 +220,9 @@ insert into tab_class_11
 insert into tab_class_11
             values(3,'JAVA3班',null);
 
+--（2）添加学生信息如下：‘A001’,‘张三’,‘男’,‘01-5月-05’,100,1
+insert into tab_student_11
+            values('A001','张三','男','01-5月-05',100,1);
 
 
 
@@ -227,8 +230,6 @@ insert into tab_class_11
 
 select * from tab_student_11;
 select * from tab_class_11;
---（2）添加学生信息如下：‘A001’,‘张三’,‘男’,‘01-5月-05’,100,1
-
 --（3）添加学生信息如下：'A002','MIKE','男','1905-05-06',10
 
 --（4）插入部分学生信息： 'A003','JOHN','女’
