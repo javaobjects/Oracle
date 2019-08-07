@@ -275,12 +275,13 @@ update copy_emp set sal = (select avg(sal) from copy_emp)
        where sal is null;
 
 --(5)把工资为平均工资的员工，工资修改为空
+update copy_emp set sal = null
+       where sal = (select avg(sal) from copy_emp);
 
+--(6)另外打开窗口2查看以上修改
 
 
 select * from copy_emp;
---(6)另外打开窗口2查看以上修改
-
 --(7)执行commit，窗口2中再次查看以上信息
 
 --(8)删除工资为空的员工信息
