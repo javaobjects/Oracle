@@ -279,8 +279,6 @@ update copy_emp set sal = null
        where sal = (select avg(sal) from copy_emp);
 
 --(6)另外打开窗口2查看以上修改
-
-
 select * from copy_emp;
 --(7)执行commit，窗口2中再次查看以上信息
 
