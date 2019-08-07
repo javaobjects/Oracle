@@ -235,6 +235,10 @@ update tab_student_11 set sex = '女'
        where xh = 'A001';
 
 --（6）将A001学生信息修改如下：性别为男，生日设置为1980-04-01
+update tab_student_11 set sex = '男',
+       birthday = '01-4月-1980'
+       where xh in 'A001';
+
 
 
 select * from tab_student_11;
