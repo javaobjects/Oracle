@@ -258,13 +258,16 @@ create table copy_emp (
     sal number(8,2)
 );
 
-select * from copy_emp;
 --4. 在第三题表的基础上，完成下列问题
 
 --(1)在表copy_emp中插入数据，要求sal字段插入空值，部门号50，参加工作时间为2000年1月1日，其他字段随意
+insert into copy_emp
+       values(520,'heheda','01-1月-00',50,null);
 
 --(2)在表copy_emp中插入数据，要求把emp表中部门号为10号部门的员工信息插入
 
+
+select * from copy_emp;
 --(3)修改copy_emp表中数据，要求10号部门所有员工涨20%的工资
 
 --(4)修改copy_emp表中sal为空的记录，工资修改为平均工资
