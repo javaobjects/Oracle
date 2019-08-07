@@ -267,12 +267,15 @@ insert into copy_emp
 --(2)在表copy_emp中插入数据，要求把emp表中部门号为10号部门的员工信息插入
 insert into copy_emp
        select empno,ename,hiredate,deptno,sal from emp where deptno in 10;
-
-select * from copy_emp;
 --(3)修改copy_emp表中数据，要求10号部门所有员工涨20%的工资
-
+update copy_emp set sal = sal + sal * 0.2
+       where deptno in 10;
 --(4)修改copy_emp表中sal为空的记录，工资修改为平均工资
 
+
+
+
+select * from copy_emp;
 --(5)把工资为平均工资的员工，工资修改为空
 
 --(6)另外打开窗口2查看以上修改
