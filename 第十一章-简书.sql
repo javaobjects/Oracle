@@ -207,7 +207,18 @@ select * from emp_back;
                 ccount  number(3) --班级人数
     )
 
+--2. 基于上述学生表和班级表，完成如下问题
 
+--（1）添加三个班级信息为：1，JAVA1班，null
+--                         2，JAVA2班，null
+--                         3，JAVA3班，null
+
+insert into tab_class_11
+            values(1,'JAVA1班',null);
+insert into tab_class_11
+            values(2,'JAVA2班',null);
+insert into tab_class_11
+            values(3,'JAVA3班',null);
 
 
 
@@ -216,12 +227,6 @@ select * from emp_back;
 
 select * from tab_student_11;
 select * from tab_class_11;
---2. 基于上述学生表和班级表，完成如下问题
-
---（1）添加三个班级信息为：1，JAVA1班，null
---                         2，JAVA2班，null
---                         3，JAVA3班，null
-
 --（2）添加学生信息如下：‘A001’,‘张三’,‘男’,‘01-5月-05’,100,1
 
 --（3）添加学生信息如下：'A002','MIKE','男','1905-05-06',10
