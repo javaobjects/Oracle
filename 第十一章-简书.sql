@@ -154,44 +154,38 @@ select * from emp_back;
 --    COMMIT; --提交就不能回滚咯 表中只有 values(1, 'a')
 --    ROLLBACK;
 
-
-
-
-
-select * from emp;
-select * from dept;
 --## 练习9
 
 --分析如下两个会话，执行完每一步时的数据库状态。
 
 --    会话A
 
---    1.UPDATE EMP SET sal = sal+500 WHERE deptno= 10;
+--    1.UPDATE EMP SET sal = sal+500 WHERE deptno= 10;--1
 
 
 
---    3.SELECT sal FROM EMP WHERE deptno = 10;
+--    3.SELECT sal FROM EMP WHERE deptno = 10;--2
 
 
 
---    6.COMMIT:
+--    6.COMMIT: --3
 
---    8.SELECT sal FROM EMP WHERE deptno = 10;
+--    8.SELECT sal FROM EMP WHERE deptno = 10; --5
 
 
 
 --    会话B
 
 
---    2.SELECT sal FROM EMP WHERE deptno = 10;
+--    2.SELECT sal FROM EMP WHERE deptno = 10;--4
 
 
 
---    4.UPDATE EMP SET sal = sal+500 WHERE deptno = 20;
+--    4.UPDATE EMP SET sal = sal+500 WHERE deptno = 20;--6
 
---    5.UPDATE EMP SET sal = sal+1000 WHERE deptno = 10;
+--    5.UPDATE EMP SET sal = sal+1000 WHERE deptno = 10;--7
 
---    7.COMMIT;
+--    7.COMMIT;--8
 
 --## 课后作业
 
@@ -213,6 +207,15 @@ select * from dept;
 --                ccount  number(3) --班级人数
 --    )
 
+
+
+
+
+
+
+
+select * from emp;
+select * from dept;
 --2. 基于上述学生表和班级表，完成如下问题
 
 --（1）添加三个班级信息为：1，JAVA1班，null
