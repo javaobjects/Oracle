@@ -111,4 +111,7 @@ where deptno <= 30;
 select * from tab_empl;
 --5. 试为学生表student增加一列学生性别gender 默认值 “女”。
 
+alter table student add (gender char(2));
+alter table student modify(gender default '女');
+
 --6. 试修改学生姓名列数据类型为定长字符型10位。
