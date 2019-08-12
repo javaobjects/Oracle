@@ -44,6 +44,7 @@ select * from copy_emp;
 alter table copy_emp modify (gender char(4));
 
 --3. 修改员工表中性别列的默认值为“女”
+alter table copy_emp modify (gender default '女');
 
 --4. 删除员工表中的性别列
 
