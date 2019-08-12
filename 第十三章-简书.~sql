@@ -23,6 +23,11 @@ create table tab_student_13(
 --## 练习2
 
 --1. 通过子查询的方式创建一个表dept10,该表保存10号部门的员工数据。
+create table tab_dept10
+as select * from emp
+where deptno in 10;
+
+select * from tab_dept10;
 
 --## 练习3
 
