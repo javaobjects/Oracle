@@ -91,6 +91,8 @@ create table tab_date_test(
 select * from tab_date_test;
 
 insert into tab_date_test
+values(sysdate);
+insert into tab_date_test
 values(to_date('1998-08-18','yyyy/mm/dd'));
 
 select * from tab_date_test;
