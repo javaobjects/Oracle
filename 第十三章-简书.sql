@@ -80,7 +80,15 @@ select * from copy_emp;
 
 --(11)二进制大对象图像/声音 blob
 
---2. 创建表date_test,包含列d，类型为date型。试向date_test表中插入两条记录，一条当前系统日期记录，一条记录为“1998-08-18”。
+--2. 创建表date_test,包含列d，类型为date型。
+--试向date_test表中插入两条记录，
+--一条当前系统日期记录，一条记录为“1998-08-18”。
+
+create table tab_date_test(
+       d date
+);
+
+select * from tab_date_test;
 
 --3. 创建与dept表相同表结构的表dtest，将dept表中部门编号在40之前的信息插入该表。
 
