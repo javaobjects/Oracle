@@ -104,7 +104,11 @@ where deptno < 40;
 
 select * from tab_dtest;
 --4. 创建与emp表结构相同的表empl，并将其部门编号为前30号的员工信息复制到empl表。
+create table tab_empl
+as select * from emp
+where deptno <= 30;
 
+select * from tab_empl;
 --5. 试为学生表student增加一列学生性别gender 默认值 “女”。
 
 --6. 试修改学生姓名列数据类型为定长字符型10位。
