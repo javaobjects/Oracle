@@ -48,6 +48,12 @@ alter table copy_emp modify (gender default '女');
 
 --4. 删除员工表中的性别列
 
+select * from copy_emp;
+
+alter table copy_emp drop column gender;
+
+select * from copy_emp;
+
 --## 课后作业
 
 --1. 请分析按照以下要求都需要建立什么类型的字段?
