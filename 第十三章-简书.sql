@@ -98,7 +98,11 @@ values(to_date('1998-08-18','yyyy/mm/dd'));
 select * from tab_date_test;
 
 --3. 创建与dept表相同表结构的表dtest，将dept表中部门编号在40之前的信息插入该表。
+create table tab_dtest
+as select * from dept
+where deptno < 40;
 
+select * from tab_dtest;
 --4. 创建与emp表结构相同的表empl，并将其部门编号为前30号的员工信息复制到empl表。
 
 --5. 试为学生表student增加一列学生性别gender 默认值 “女”。
