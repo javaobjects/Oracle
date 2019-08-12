@@ -85,10 +85,15 @@ select * from copy_emp;
 --一条当前系统日期记录，一条记录为“1998-08-18”。
 
 create table tab_date_test(
-       
+       d date
 );
 
+select * from tab_date_test;
 
+insert into tab_date_test
+values(to_date('1998-08-18','yyyy/mm/dd'));
+
+select * from tab_date_test;
 
 --3. 创建与dept表相同表结构的表dtest，将dept表中部门编号在40之前的信息插入该表。
 

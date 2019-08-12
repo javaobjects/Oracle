@@ -90,6 +90,11 @@ create table tab_date_test(
 
 select * from tab_date_test;
 
+insert into tab_date_test
+values(to_date('1998-08-18','yyyy/mm/dd'));
+
+select * from tab_date_test;
+
 --3. 创建与dept表相同表结构的表dtest，将dept表中部门编号在40之前的信息插入该表。
 
 --4. 创建与emp表结构相同的表empl，并将其部门编号为前30号的员工信息复制到empl表。
