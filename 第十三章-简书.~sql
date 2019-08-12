@@ -32,6 +32,12 @@ select * from tab_dept10;
 --## 练习3
 
 --1. 在员工表中添加一个性别列，列名为gender，类型为char(2)，默认值为“男”
+select * from copy_emp;
+
+alter table copy_emp add (gender char(2));
+alter table copy_emp modify(gender default '男');
+
+select * from copy_emp;
 
 --2. 修改员工表中性别列的数据类型为char(4)
 
