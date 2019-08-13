@@ -30,9 +30,14 @@ as select dname,min(sal) minSalbydname
    group by dept.dname;
 select * from viewMinSalbydname;
 
-
-
 -- 3. 通过如上视图，查询每个部门工资最低的员工姓名及部门名称
+
+select ename,viewMinSalbydname.dname
+from emp,dept,viewMinSalbydname
+where emp.deptno = dept.deptno
+and dept.dname = viewMinSalbydname.dname
+and emp.sal = viewMinSalbydname.minSalbydname;
+
 
 -- ## 课后作业
 
