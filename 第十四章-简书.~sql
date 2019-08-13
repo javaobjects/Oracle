@@ -8,19 +8,32 @@
 --   系所在校区：取值范围只能在南湖校区和浑南校区)
 
 create table tabCollege(
-       cgNo number(4) constraint tabCollege_cgNo_pk primary key,--  系编号： 主键，
-       cgName varchar2(20) constraint tabCollege_cgName_unique unique,--   系名称:  唯一键，
-       cgDirector varchar2(20) constraint tabCollege_cgDirector_noNull not null,--   系主任： 非空约束，
-       cgCampus varchar2(40) constraint tabCollege_cgCampus_ck check(cgCampus in ('南湖校区','浑南校区'))
+       cgNo number(4) 
+       constraint tabCollege_cgNo_pk primary key,
+       --  系编号： 主键，
+       cgName varchar2(20) 
+       constraint tabCollege_cgName_unique unique,
+       --   系名称:  唯一键，
+       cgDirector varchar2(20) 
+       constraint tabCollege_cgDirector_noNull not null,
+       --   系主任： 非空约束，
+       cgCampus varchar2(40) 
+       constraint tabCollege_cgCampus_ck check(cgCampus in ('南湖校区','浑南校区'))
        --   系所在校区：取值范围只能在南湖校区和浑南校区)
 );
 -- 班级(班级编号： 主键，
 --     班级名称： 唯一键，
 --     所属系：  外键)
 create table tabClass(
-       caNo number(4) constraint tabClass_caNo_pk primary key,-- 班级编号： 主键，
-       caName varchar2(40) constraint tabClass_caName_unique unique,--     班级名称： 唯一键，
-       cgName varchar2(40) constraint tabClass_cgName_fk references tabCollege(cgName) --     所属系：  外键
+       caNo number(4) 
+       constraint tabClass_caNo_pk primary key,
+       -- 班级编号： 主键，
+       caName varchar2(40) 
+       constraint tabClass_caName_unique unique,
+       --     班级名称： 唯一键，
+       cgName varchar2(40) 
+       constraint tabClass_cgName_fk references tabCollege(cgName)
+        --     所属系：  外键
 );
 
 -- 2. 创建学生表，包含如下属性:
@@ -34,6 +47,24 @@ create table tabClass(
 -- 出生日期 日期型 
 
 -- 所在班级 
+
+create table tabStudent14(
+       stNo char(10) 
+       constraint tabStudent14_stNo_pk primary key,
+       -- 学号 定长字符型 10位 主键
+       stName varchar2(20) 
+       constraint tabStudent14_stName_notNull not null,
+       -- 姓名 变长字符型 20位 非空
+       stSex char(2) 
+       constraint tabStudent14_stSex_ck check(stSex in ('男','女')),
+       -- 性别 定长字符型 2位 取值范围只能为男或女
+       stBirthday date,-- 出生日期 日期型 
+       caNo number(4) 
+       constraint tabStudent14_caNo_fk reference tabClass(caNo)
+       -- 所在班级 没有要求说明是外键，但自己的思路表之间关联应该为外键
+);
+
+
 
 -- ## 课后作业
 
