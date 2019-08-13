@@ -120,7 +120,9 @@ as select * from emp
 where 1 = 0;
 
 -- 4. 创建copy_dept，要求格式同dept表完全一样，不包含数据。
-
+create table tab_copy_dept_14
+as select * from dept
+where 1 = 0;
 -- 5. 设置copy_emp 表中外键deptno，参照copy_dept中deptno,语句能否成功,为什么？
 
 -- 6. 追加copy_dept表中主键deptno
