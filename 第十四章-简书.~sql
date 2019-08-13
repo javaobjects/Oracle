@@ -48,6 +48,7 @@ create table tabClass(
 
 -- 所在班级 
 
+
 create table tabStudent14(
        stNo char(10) 
        constraint tabStudent14_stNo_pk primary key,
@@ -85,6 +86,33 @@ create table tabStudent14(
 -- 课程编号 非空 外键；
 
 -- 成绩     0-100之间；
+
+
+ --  为题2创建的课程表，用以设置外键foreign key
+    create table tabCourse(
+    cid number(4) constraint tabCourse_cis_pk primary key,    --课程编号
+    cname varchar(50) constraint tabCourse_cname_unique unique--课程姓名
+    --ctypeID number(4), --课程类型
+    --score number(1),   --学分
+    --chour number(2)   --课时
+    );
+    
+    
+create table tabSc (
+       scId number(10) 
+       constraint tabSc_scId_pk primary key,
+       -- 选课流水号 数值型 主键；
+       stNo number(10)
+       constraint tabSc_scNo_fk reference tabStudent14(stNo),
+       -- 学生编号 非空 外键
+       cid number(4)
+       constraint tabSc_cid_fk reference tabCourse(cid),
+       -- 课程编号 非空 外键；
+       scGrade number(5,2) 
+       constraint tabSc_scGrade_ck check(scGrade bewteen 0 and 100)
+       -- 成绩     0-100之间；
+);
+
 
 -- 3. 创建copy_emp，要求格式同emp表完全一样，不包含数据。
 
