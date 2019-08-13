@@ -23,6 +23,15 @@ select * from viewLoc_NY_CA;
 
 -- 2. 创建一个视图，通过该视图可以查询到每个部门的部门名称及最低工资。
 
+create or replace view viewMinSalbydname
+as select dname,min(sal) minSalbydname
+   from emp,dept
+   where emp.deptno(+) = dept.deptno
+   group by dept.dname;
+select * from viewMinSalbydname;
+
+
+
 -- 3. 通过如上视图，查询每个部门工资最低的员工姓名及部门名称
 
 -- ## 课后作业
