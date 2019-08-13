@@ -12,6 +12,14 @@ select * from viewSal2k_5k;
 -- ## 练习2
 
 -- 1. 创建一个视图，通过该视图可以查询到工作在NEW YORK和CHICAGO的员工编号，姓名，部门编号，入职日期。
+create or replace view viewLoc_NY_CA
+as select empno,ename,dept.deptno,hiredate
+          from emp,dept
+          where emp.deptno = dept.deptno
+          and loc in ('NEW YORK','CHICAGO');
+
+select * from viewLoc_NY_CA;
+
 
 -- 2. 创建一个视图，通过该视图可以查询到每个部门的部门名称及最低工资。
 
