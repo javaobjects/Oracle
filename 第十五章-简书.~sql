@@ -62,3 +62,8 @@ as select dname,job,loc
    and sal > 2000;
 select * from v_sal2000M;
 -- 4. 针对以上视图执行insert,update,delete,语句能否成功，为什么？
+
+insert into v_sal2000M values('aaa','bbb','ccc'); -- error 无法修改与非键值保存表对应的列
+
+
+
