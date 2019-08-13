@@ -7,10 +7,12 @@
     where sal > (select sal from emp where ename in 'JONES');
 
 ![](18-Images/1.png) 
+
 查询工资最低的员工姓名？
 
     select ename from emp
     where sal = (select min(sal) from emp);
+
 ![](18-Images/2.png) 
 
 ## 练习一
@@ -42,6 +44,7 @@ where sal >
 and dept.loc in 'CHICAGO';
 
 ```
+
 ![](18-Images/4.png)  
 
 3. 查询入职日期比20部门入职日期最早的员工还要早的员工姓名，入职日期
@@ -282,6 +285,7 @@ order by hiredate;
 ```
 
 ![](18-Images/16.png)   
+
 ## 练习六
 1. 按照每页显示5条记录，分别查询第1页，第2页，第3页信息，要求显示员工姓名、入职日期、部门名称。
 ```
@@ -397,43 +401,326 @@ where sal > (select sal from emp where empno in 7782)
 and job in (select job from emp where empno in 7369);
 ```
 ![](18-Images/103.png)
+
 2. 查询工资最高的员工姓名和工资。 
+
 ```
 select ename,sal
 from emp
 where sal in (select max(sal) from emp);
 ```
+
 ![](18-Images/104.png)
+
 3. 查询部门最低工资高于10号部门最低工资的部门的编号、名称及部门最低工资。
 
+```
+--第一步：查询部门最低工资
+select emp.deptno,dname,min(sal) from emp,dept
+where emp.deptno = dept.deptno;
+--第二步：查询10号部门的最低工资
+select min(sal) from emp where deptno in 10;
+--第三步：解题
+
+--第一种 解题方式：
+select emp.deptno,dname,min(sal) from emp,dept
+where emp.deptno = dept.deptno
+group by emp.deptno,dname --group by是所有列必须出现在后边
+having min(sal) > (select min(sal) from emp where deptno in 10);
+--第二种 解题方式：
+select tab_minSal_gb_deptno.deptno,dname,tab_minSal_gb_deptno.minSal_by_deptno
+from (select min(sal) minSal_by_deptno,deptno from emp group by deptno) tab_minSal_gb_deptno,
+(select min(sal) minSal_deptno10 from emp where deptno in 10),dept
+where tab_minSal_gb_deptno.deptno = dept.deptno 
+and minSal_by_deptno > minSal_deptno10;
+```
+
+![](18-Images/105.png)
+
 4. 查询员工工资为其部门最低工资的员工的编号和姓名及工资。
+
+```
+--第一步：先查部门的最低工资
+select deptno,min(sal) from emp group by deptno;
+--第二步：将上面的结果集作为一个表，进行多表查询
+select empno,ename,sal 
+from emp,(select deptno,min(sal) minSal_gb_deptno from emp group by deptno) tab_minSal_gb_deptno
+where emp.deptno = tab_minSal_gb_deptno.deptno
+and sal = minSal_gb_deptno;
+```
+![](18-Images/106.png)
+
 5. 显示经理是KING的员工姓名，工资。
+
+```
+--第一步：先查出KING的员工编号
+select empno from emp where ename in 'KING';
+--第二步：解题 
+select ename,sal
+from emp
+where mgr in (select empno from emp where ename in 'KING')
+```
+![](18-Images/107.png)
+
 6. 显示比员工SMITH参加工作时间晚的员工姓名，工资，参加工作时间。
+
+```
+--第一步：先查出SMITH参加工作的时间
+select hiredate from emp where ename in 'SMITH';
+--第二步：解题 
+select ename,sal,hiredate
+from emp
+where hiredate > (select hiredate from emp where ename in 'SMITH');
+```
+![](18-Images/108.png)
+
 7. 使用子查询的方式查询哪些职员在NEW YORK工作。
+
+```
+select * from emp,dept
+where emp.deptno in dept.deptno
+and loc in 'NEW YORK';
+```
+![](18-Images/109.png)
+
 8. 写一个查询显示和员工SMITH工作在同一个部门的员工姓名，雇用日期，查询结果中排除SMITH。
+
+```
+select ename,hiredate
+from emp,dept
+where emp.deptno in dept.deptno
+and emp.deptno in (select deptno from emp where ename in 'SMITH')
+and ename not in 'SMITH';
+```
+![](18-Images/110.png)
+
 9. 写一个查询显示其工资比全体职员平均工资高的员工编号、姓名。
+
+```
+select empno,ename
+from emp
+where sal > (select avg(sal) from emp);
+```
+![](18-Images/111.png)
+
+
 10. 写一个查询显示其上级领导是King的员工姓名、工资。
+
+```
+select ename,sal
+from emp
+where mgr in (select empno from emp where ename in 'KING');
+```
+![](18-Images/112.png)
+
 11. 显示所有工作在RESEARCH部门的员工姓名，职位。
+
+```
+select ename,job
+from emp,dept
+where emp.deptno in dept.deptno
+and dname in 'RESEARCH';
+```
+
+![](18-Images/113.png)
+
 12. 查询每个部门的部门编号、平均工资，要求部门的平均工资高于部门20的平均工资。
+
+```
+--第一步：查询第个部门的部门编号，平均工资
+select deptno,avg(sal) avgSal_gb_deptno
+from emp
+group by deptno;
+--第二步：查询部门20的平均工资
+select deptno,avg(sal) avgSal_gb_deptno_20
+from emp
+group by deptno
+having deptno in 20;
+--第三步：解题 
+select deptno,avg(sal)
+from emp
+group by deptno
+having avg(sal) > 
+(select avg(sal)
+from emp
+group by deptno
+having deptno in 20);
+```
+
+![](18-Images/114.png)
+
 13. 查询大于自己部门平均工资的员工姓名，工资，所在部门平均工资，高于部门平均工资的额度。
+
+```
+--第一步：查询自己部门的平均工资
+select deptno,avg(sal) from emp group by deptno;
+--第二步：将以上结果作为一个表进行多表查询
+
+select ename,sal,avgSal_gb_deptno,(sal - avgSal_gb_deptno) 高于平均工资的差值
+from emp,
+(select deptno,avg(sal) avgSal_gb_deptno from emp group by deptno) tab_gb_deptno
+where emp.deptno in tab_gb_deptno.deptno
+and sal > avgSal_gb_deptno;
+```
+![](18-Images/115.png)
+
 14. 列出至少有一个雇员的所有部门
+
+```
+select deptno,count(1)
+from emp
+group by deptno
+having count(*) > 0;
+```
+![](18-Images/116.png)
+
 15. 列出薪金比"SMITH"多的所有雇员
+
+```
+select * from emp
+where sal > (select sal from emp where ename in 'SMITH');
+```
+![](18-Images/117.png)
+
 16. 列出入职日期早于其直接上级的所有雇员
+
+```
+select worker.ename,worker.hiredate
+from emp worker,emp manager
+where worker.mgr in manager.empno
+and worker.hiredate < manager.hiredate;
+```
+![](18-Images/118.png)
+
 17. 找员工姓名和直接上级的名字
+
+```
+select worker.ename 员工姓名,manager.ename 直接上级姓名
+from emp worker,emp manager
+where worker.mgr in manager.empno(+);
+```
+![](18-Images/119.png)
+
+
 18. 显示部门名称和人数
+
+```
+--第一步：先查出部门人数
+select count(*) countNum,deptno
+from emp
+group by deptno;
+--第二步：以上面的查询结果作一个表，多表查询
+select dname,countNum
+from dept,(
+select count(*) countNum,deptno
+from emp
+group by deptno) tab_countNum_gb_deptno
+where dept.deptno in tab_countNum_gb_deptno.deptno(+);
+```
+
+![](18-Images/120.png)
+
 19. 显示每个部门的最高工资的员工
+
+```
+select ename,sal,deptno
+from emp
+where sal in
+(select max(sal) from emp group by deptno);
+```
+
+![](18-Images/121.png)
+
 20. 显示出和员工号7369部门相同的员工姓名，工资
+
+```
+select ename,sal 
+from emp
+where deptno in (select deptno from emp where empno in 7369);
+```
+![](18-Images/122.png)
+
 21. 显示出和姓名中包含"W"的员工相同部门的员工姓名
+
+```
+--第一步：先查出姓名中包含"W"的员工部门
+select deptno from emp where ename like '%W%';
+--第二步：解题 
+select ename
+from emp 
+where deptno in
+ (select deptno from emp where ename like '%W%')
+```
+
+![](18-Images/123.png)
+
 22. 显示出工资大于平均工资的员工姓名，工资
+
+```
+select ename,sal
+from emp 
+where sal > (select avg(sal) from emp);
+```
+
+![](18-Images/124.png)
+
 23. 显示出工资大于本部门平均工资的员工姓名，工资
+
+```
+--第一步：查询本部门的平均工资
+select avg(sal),deptno from emp group by deptno;
+--第二步：解题
+select ename,sal
+from emp,(select avg(sal) avgSal_gb_deptno,deptno from emp group by deptno) tab_avgSal_gb_deptno
+where emp.deptno in tab_avgSal_gb_deptno.deptno
+and sal > avgSal_gb_deptno;
+```
+![](18-Images/125.png)
+
 24. 显示每位经理管理员工的最低工资，及最低工资者的姓名
+
+```
+--第一步：先查出每位经理管理的员工的最低工资
+select min(sal),mgr from emp where mgr is not null group by mgr;
+--第二步：解题 
+select sal,ename
+from emp,(select min(sal) minSal,mgr from emp where mgr is not null group by mgr) tab_minSal_gb_mgr
+where emp.mgr in tab_minSal_gb_mgr.mgr
+and sal in minSal;
+```
+![](18-Images/126.png)
+
 25. 显示比工资最高的员工参加工作时间晚的员工姓名，参加工作时间
+
+```
+select ename,hiredate
+from emp
+where hiredate > (select hiredate from emp where sal in (select max(sal) from emp));
+```
+![](18-Images/127.png)
+
 26. 显示出平均工资最高的的部门平均工资及部门名称
 
+```
+--第一步：先查出部门平均工资及名称
+select avg(sal) avgSal,deptno from emp group by deptno;
+--第二步：解题 
+--方法一
+select * from (select dname,avg(sal) avgsal from emp e,dept d where e.deptno = d.deptno group by dname)
+where avgsal = (select max(avg(sal)) from emp group by deptno);
+
+--方法二
+select dname,avg(sal)  from emp e,dept d 
+where e.deptno = d.deptno 
+group by dname 
+having avg(sal) =(select max(avg(sal)) from emp group by deptno);
+```
+![](18-Images/128.png)
 
 ==================================================================
 #### 分割线
 ==================================================================
+
 **博主为咯学编程：父母不同意学编程，现已断绝关系;恋人不同意学编程，现已分手;亲戚不同意学编程，现已断绝来往;老板不同意学编程,现已失业三十年。。。。。。如果此博文有帮到你欢迎打赏，金额不限。。。**
 
 ![](18-Images/pay.png)
