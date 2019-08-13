@@ -7,6 +7,8 @@ create or replace view viewSal2k_5k
 
 -- 2. 通过上述创建的视图查询数据
 
+select * from viewSal2k_5k;
+
 -- ## 练习2
 
 -- 1. 创建一个视图，通过该视图可以查询到工作在NEW YORK和CHICAGO的员工编号，姓名，部门编号，入职日期。
