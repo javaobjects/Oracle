@@ -5,11 +5,23 @@
 --系(系编号： 主键，
 --   系名称:  唯一键，
 --   系主任： 非空约束，
---   系所在校去：取值范围只能在南湖校区和浑南校区)
+--   系所在校区：取值范围只能在南湖校区和浑南校区)
 
+create table tabCollege(
+       cgNo number(4) constraint tabCollege_cgNo_pk primary key,--  系编号： 主键，
+       cgName varchar2(20) constraint tabCollege_cgName_unique unique,--   系名称:  唯一键，
+       cgDirector varchar2(20) constraint tabCollege_cgDirector_noNull not null,--   系主任： 非空约束，
+       cgCampus varchar2(40) constraint tabCollege_cgCampus_ck check(cgCampus in ('南湖校区','浑南校区'))
+       --   系所在校区：取值范围只能在南湖校区和浑南校区)
+);
 -- 班级(班级编号： 主键，
 --     班级名称： 唯一键，
 --     所属系：  外键)
+create table tabClass(
+       caNo number(4) constraint tabClass_caNo_pk primary key,-- 班级编号： 主键，
+       caName varchar2(40) constraint tabClass_caName_unique unique,--     班级名称： 唯一键，
+       cgName varchar2(40) constraint tabClass_cgName_fk references tabCollege(cgName) --     所属系：  外键
+);
 
 -- 2. 创建学生表，包含如下属性:
 

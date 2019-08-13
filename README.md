@@ -388,7 +388,9 @@ where rownum <= 15)
 where rn > 10;
 ```
 ![](18-Images/100.png)
+
 ![](18-Images/101.png)
+
 ![](18-Images/102.png)
 
 ## 课后作业
