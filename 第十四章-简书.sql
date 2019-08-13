@@ -124,5 +124,10 @@ create table tab_copy_dept_14
 as select * from dept
 where 1 = 0;
 -- 5. 设置copy_emp 表中外键deptno，参照copy_dept中deptno,语句能否成功,为什么？
+alter table tab_copy_emp_14 add 
+constraint tab_coy_emp_14_deptno_fk
+           foreign key(deptno) references tab_copy_dept_14(deptno);
+--  不能，因为copy_dept表中的deptno不是主键或唯一值
 
 -- 6. 追加copy_dept表中主键deptno
+
