@@ -42,6 +42,11 @@ and emp.sal = viewMinSalbydname.minSalbydname;
 -- ## 课后作业
 
 -- 1. 创建视图v_emp_20，包含20号部门的员工编号，姓名，年薪列(年薪=12*(工资+奖金）；
+create or replace view v_emp_20
+as select empno,ename,12 * (nvl(sal,0) + nvl(comm,0)) 年薪
+from emp where deptno in 20;
+
+select * from v_emp_20;
 
 -- 2. 从视图v_emp_20中查询年薪大于1万元员工的信息；
 
