@@ -1,5 +1,9 @@
 -- ## 练习1
 -- 1. 创建一个视图，通过该视图可以查询到工资在2000-5000内并且姓名中包含有A的员工编号，姓名，工资。
+create or replace view viewSal2k_5k
+       as select empno,ename,sal from emp
+       where sal between 2000 and 5000
+       and ename like '%A%';
 
 -- 2. 通过上述创建的视图查询数据
 
