@@ -69,4 +69,8 @@ update v_sal2000M set job = 'aaa'
        where job in 'MANAGER'; -- ok
 select * from v_sal2000M;
 
+delete v_sal2000M; -- ok只删除表数据，就是表还在
+select * from v_sal2000M;
+
+
 
