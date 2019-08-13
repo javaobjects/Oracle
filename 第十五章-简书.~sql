@@ -55,4 +55,10 @@ where 年薪 > 10000;
 
 -- 3. 请为工资大于2000的员工创建视图，要求显示员工的部门信息，职位信息，工作地点；
 
+create or replace view v_sal2000M
+as select dname,job,loc
+   from emp,dept
+   where emp.deptno = dept.deptno
+   and sal > 2000;
+select * from v_sal2000M;
 -- 4. 针对以上视图执行insert,update,delete,语句能否成功，为什么？
