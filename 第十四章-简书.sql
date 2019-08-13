@@ -115,6 +115,9 @@ create table tabSc (
 
 
 -- 3. 创建copy_emp，要求格式同emp表完全一样，不包含数据。
+create table tab_copy_emp_14
+as select * from emp
+where 1 = 0;
 
 -- 4. 创建copy_dept，要求格式同dept表完全一样，不包含数据。
 
