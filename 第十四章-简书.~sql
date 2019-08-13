@@ -130,4 +130,5 @@ constraint tab_coy_emp_14_deptno_fk
 --  不能，因为copy_dept表中的deptno不是主键或唯一值
 
 -- 6. 追加copy_dept表中主键deptno
-
+alter table tab_copy_dept_14 add
+constraint tab_copy_dept_14_deptno_pk primary key (deptno);
