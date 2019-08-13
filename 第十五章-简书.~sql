@@ -65,5 +65,8 @@ select * from v_sal2000M;
 
 insert into v_sal2000M values('aaa','bbb','ccc'); -- error 无法修改与非键值保存表对应的列
 
+update v_sal2000M set job = 'aaa'
+       where job in 'MANAGER'; -- ok
+select * from v_sal2000M;
 
 
