@@ -129,3 +129,11 @@ select * from copy_emp_index;
 select ename,sal from copy_emp_index where empno in 200001;--3.488s
 
 --7. 在copy_emp_index表的empno字段上创建索引，再次执行第6题语句，记录执行时间并做对比；
+create index idx_copy_emp_index_empno
+on copy_emp_index(empno);
+
+select ename,sal from copy_emp_index where empno in 200001;--0.313s
+
+
+
+
