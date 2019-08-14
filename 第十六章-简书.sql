@@ -1,6 +1,11 @@
 --## 练习1
 --1. 创建一个序列，该序列起始值从1开始，无最大值，增量是1，不循环。
-
+create sequence test_seq1
+       start with 1 -- 始值从1开始 可省略
+       nomaxvalue -- 无最大值 
+       increment by 1 -- 增量是1 可省略
+       nocycle; -- 不循环
+drop sequence test_seq1;       
 --2. 查询序列的当前值及下一个值
 
 --3. 使用第1题所建的序列，向部门表中插入两条记录，部门编号使用序列值，部门名称分别为：Education、Market，城市分别为：DALLAS、WASHTON
