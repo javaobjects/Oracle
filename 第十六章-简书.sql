@@ -57,7 +57,10 @@ select * from test;
 select * from test where empno in 800000;-- 0.128s
 
 --5. 在test表的empno字段上创建索引
+create index idx_test_empno 
+on test(empno);
 
+select * from test;
 --6. 重新执行第4题，对比查询时间
 
 --## 练习3
