@@ -32,6 +32,11 @@ select * from copy_dept;
 --## 练习2
 
 --1. 使用子查询的方式，创建test表。
+create table test
+as select * from emp;
+
+select * from test;
+
 
 --2. 快速复制test表中的数据，复制到100w条左右
 
