@@ -13,6 +13,7 @@ grant create table to test;
 
 --## 课后作业
 --1. 建立新用户neu
+create user neu indentified by neu;
 
 --2. 给用户neu授权,使其能够登录到数据库，能够查询scott下的emp表，能修改emp表的sal,ename两个字段
 
