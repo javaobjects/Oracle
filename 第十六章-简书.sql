@@ -40,7 +40,8 @@ select * from test;
 
 --2. 快速复制test表中的数据，复制到100w条左右
 
-insert into test select * from test;-- 执行咯 13将 147456条数据
+insert into test select * from test;
+-- 执行咯 13将 147456条数据 大概要执行16次左右
 
 select * from test;
 
@@ -52,6 +53,8 @@ update test set empno = rownum;
 select * from test;
 
 --4. 查询test中empno为800000的记录值，记录查询执行时间。
+
+select * from test where empno in 800000;-- 0.128s
 
 --5. 在test表的empno字段上创建索引
 
