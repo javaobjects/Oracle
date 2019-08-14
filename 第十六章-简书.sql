@@ -63,6 +63,8 @@ on test(empno);
 select * from test;
 --6. 重新执行第4题，对比查询时间
 
+select * from test where empno in 800000;-- 0.039s
+
 --## 练习3
 
 --1. 有如下关系模式，
