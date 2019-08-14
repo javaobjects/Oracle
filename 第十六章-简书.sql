@@ -122,7 +122,10 @@ alter table copy_emp_index modify empno number(20);
 --先要修改精度，否则报错 值大于为此列指定的允许精度
 update copy_emp_index set empno = rownum;
 
+select * from copy_emp_index;
 
 --6. 查询表copy_emp_index表中员工号为200001的员工姓名，工资，记录执行时间；
+
+select ename,sal from copy_emp_index where empno in 200001;--3.488s
 
 --7. 在copy_emp_index表的empno字段上创建索引，再次执行第6题语句，记录执行时间并做对比；
