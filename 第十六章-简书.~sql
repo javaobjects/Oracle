@@ -90,6 +90,11 @@ minvalue 1 -- 最小值为1
 maxvalue 9999; -- 最大值为9999
 
 --2. 创建序列，起始值为50，每次增加5；
+create sequence test_seq16_2
+start with 50 -- 起始值为50
+increment by 5; --自增为5
+
+
 
 --3. 在表copy_dept中插入记录，其中部门号码采用上一步中创建的序列生成；
 
