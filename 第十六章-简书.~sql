@@ -94,9 +94,16 @@ create sequence test_seq16_2
 start with 50 -- 起始值为50
 increment by 5; --自增为5
 
-
-
 --3. 在表copy_dept中插入记录，其中部门号码采用上一步中创建的序列生成；
+create table copy_dept2
+as select * from dept
+where 1 = 0;
+
+insert into copy_dept2(deptno,dname)
+            values(test_seq16_2.nextval,'序列测试');
+
+select * from copy_dept2;
+
 
 --4. 请为工资创建索引，比较<10000,>1000,与round（sal）>10000,哪个索引有效，哪个索引无效；
 
