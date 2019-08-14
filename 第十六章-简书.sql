@@ -11,7 +11,23 @@ drop sequence test_seq1;
 select test_seq1.nextval from dual;-- 查询序列的下一个值
 select test_seq1.currval from dual; -- 查询序列的当前值
 
---3. 使用第1题所建的序列，向部门表中插入两条记录，部门编号使用序列值，部门名称分别为：Education、Market，城市分别为：DALLAS、WASHTON
+--3. 使用第1题所建的序列，向部门表中插入两条记录，
+--部门编号使用序列值，部门名称分别为：Education、Market，
+--城市分别为：DALLAS、WASHTON
+
+
+create table copy_dept
+as select * from dept;
+
+select * from copy_dept;
+
+insert into copy_dept
+values(test_seq1.nextval,'Education','DALLAS');
+
+insert into copy_dept
+values(test_seq1.nextval,'Market','WASHTON');
+
+select * from copy_dept;
 
 --## 练习2
 
