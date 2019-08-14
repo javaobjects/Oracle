@@ -111,7 +111,17 @@ select * from emp where sal < 10000;-- 0.083s 有索引，因为顺序排序
 select * from emp where sal > 1000;-- 0.040s 有索引，因为顺序排序
 select * from emp where round(sal) > 10000;-- 0.041s 无索引，有函数
 
---5. 创建表，采用“create table copy_emp_index as select * from emp”，生成500万条数据，把其中的“员工号”字段修改为唯一；
+--5. 创建表，采用“create table copy_emp_index as select * from emp”，
+--生成500万条数据，把其中的“员工号”字段修改为唯一；
+
+create table copy_emp_index as select * from emp;
+
+insert into copy_emp_index select * from copy_emp_index;
+-- 执行23次
+alter table copy_emp_index modify empno number(20);
+--先要修改精度，否则报错 值大于为此列指定的允许精度
+update copy_emp_index set empno = rownum;
+
 
 --6. 查询表copy_emp_index表中员工号为200001的员工姓名，工资，记录执行时间；
 
