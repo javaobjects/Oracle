@@ -77,6 +77,9 @@ select * from test where empno in 800000;-- 0.039s
 
 --试分析哪些列上适合创建索引？
 
+create index idx_student_sno on student(sno);
+create index idx_course_cno on course(cno);
+create index idx_sc_sno on sc(sno);
 
 --## 课后作业
 --1. 创建序列，起始位1，自增为1，最小值为1，最大值为9999
