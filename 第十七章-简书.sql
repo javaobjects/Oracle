@@ -2,6 +2,8 @@
 
 --1. 自己尝试创建一个用户user1
 
+create user test indentified by test;
+
 --2. 使用管理员账户为用户user1分配create session和create table的权限。
 
 
