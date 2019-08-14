@@ -71,6 +71,7 @@ select * from v_sal2000M;
 
 delete v_sal2000M; -- ok只删除表数据，就是表还在
 select * from v_sal2000M;
-4. 针对以上视图执行delete,
 
+drop v_sal2000M;-- 表数据与结构都被删除，表没了
+select * from v_sal2000M;
 
