@@ -83,6 +83,11 @@ create index idx_sc_sno on sc(sno);
 
 --## 课后作业
 --1. 创建序列，起始位1，自增为1，最小值为1，最大值为9999
+create sequence test_seq16_1
+start with 1 -- 起始位1，默认为1 可不写
+increment by 1 -- 自增为1，默认为1，可不写
+minvalue 1 -- 最小值为1 
+maxvalue 9999; -- 最大值为9999
 
 --2. 创建序列，起始值为50，每次增加5；
 
