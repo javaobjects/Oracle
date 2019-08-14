@@ -106,6 +106,10 @@ select * from copy_dept2;
 
 
 --4. 请为工资创建索引，比较<10000,>1000,与round（sal）>10000,哪个索引有效，哪个索引无效；
+create index idx_emp_sal on emp(sal); -- 0.018s
+select * from emp where sal < 10000;-- 0.083s 有索引，因为顺序排序
+select * from emp where sal > 1000;-- 0.040s 有索引，因为顺序排序
+select * from emp where round(sal) > 10000;-- 0.041s 无索引，有函数
 
 --5. 创建表，采用“create table copy_emp_index as select * from emp”，生成500万条数据，把其中的“员工号”字段修改为唯一；
 
