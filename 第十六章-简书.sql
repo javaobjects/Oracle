@@ -40,7 +40,16 @@ select * from test;
 
 --2. 快速复制test表中的数据，复制到100w条左右
 
+insert into test select * from test;-- 执行咯 13将 147456条数据
+
+select * from test;
+
 --3. 更新test表中的empno字段为rownum
+alter table test modify empno number(10);
+--先要修改精度，否则报错 值大于为此列指定的允许精度
+update test set empno = rownum;
+
+select * from test;
 
 --4. 查询test中empno为800000的记录值，记录查询执行时间。
 
