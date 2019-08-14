@@ -2,10 +2,14 @@
 
 --1. 自己尝试创建一个用户user1
 
-create user test indentified by test;
+create user user1 indentified by user1;
 
 --2. 使用管理员账户为用户user1分配create session和create table的权限。
 
+grant create session to user1;
+
+conn system/oracle;
+grant create table to test;
 
 --## 课后作业
 --1. 建立新用户neu
