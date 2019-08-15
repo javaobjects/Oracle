@@ -39,4 +39,4 @@ grant role_neu to neu;
 --8. É¾³ı½ÇÉ«role_neu
 drop role role_neu;
 --9. É¾³ıÓÃ»§neu
-
+drop user neu;
