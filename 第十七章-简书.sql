@@ -35,7 +35,7 @@ create role role_neu;
 --6. 给角色role_neu授权,使其能够登录到数据库
 grant connect to role_neu;
 --7. 赋角色role_neu给用户neu
-
+grant role_neu to neu;
 --8. 删除角色role_neu
 
 --9. 删除用户neu
