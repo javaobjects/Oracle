@@ -37,6 +37,6 @@ grant connect to role_neu;
 --7. 赋角色role_neu给用户neu
 grant role_neu to neu;
 --8. 删除角色role_neu
-
+drop role role_neu;
 --9. 删除用户neu
 
