@@ -25,7 +25,7 @@ select * from scott.emp;
 revoke connect from neu;
 
 --4. 回收用户neu的所有对象权限
-
+revoke update on scott.emp from neu;
 
 
 --5. 建立角色role_neu
