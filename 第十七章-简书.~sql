@@ -22,10 +22,15 @@ grant update on scott.emp to neu;
 select * from scott.emp;
 
 --3. 回收用户neu的登录权限
+revoke connect from neu;
 
 --4. 回收用户neu的所有对象权限
 
+
+
 --5. 建立角色role_neu
+
+
 
 --6. 给角色role_neu授权,使其能够登录到数据库
 
@@ -34,3 +39,4 @@ select * from scott.emp;
 --8. 删除角色role_neu
 
 --9. 删除用户neu
+
