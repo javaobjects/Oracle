@@ -29,7 +29,7 @@ revoke update on scott.emp from neu;
 
 
 --5. 建立角色role_neu
-
+create role role_neu;
 
 
 --6. 给角色role_neu授权,使其能够登录到数据库
