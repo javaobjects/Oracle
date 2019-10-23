@@ -1,0 +1,66 @@
+管理员账号：sys/sys as sysdba
+	    system/sytem  as sysdba
+
+普通账号：scott/tiger
+
+1. win+R 打开运行窗口  -> 输入sqlplus -> 回车
+
+2.输入用户名与密码登陆oracle数据
+   请输入用户名： sys
+   输入口令：sys as sysdba
+
+3.【问题一】权限不足  win7
+    计算机 -> 右键点击管理 -> 本地用户和组 -> 组 -> ora_dba ->添加登陆用户权限
+
+    【问题一】权限不足  win10
+    程序-oracle安装路径-配置和移植工具-Administrator assistant for windows-操作系统数据库管理员 -添加指定用户权限
+
+4.【问题二】协议适配器错误
+      计算机 -> 右键点击管理 -> 服务与应用程序 -> 服务
+
+     开启数据库的监听器与服务：
+	 ① OracleOraDb11g_home1TNSListener
+                ② OracleServiceORCL  
+
+5.已登录，可切换账号
+   SQL > conn scott/tiger;
+   已连接
+   SQL > select * from emp;
+
+6.【问题三】账户被锁定：the account is locked，需管理员解锁账号 
+     SQL > conn sys/sys as sysdba;
+     SQL > alter user scott account unlock;
+
+7.【问题四】忘记密码：invalid username/password;logon denied
+     SQL > conn sys/sys as sysdba;
+     SQL > alter user scott identified by tiger;
+
+8. SCOTT用户数据库表结构
+   
+   Emp表（员工信息表）
+   	empno 雇员编号
+   	ename 雇员姓名
+   	job   职位
+               mgr  经理编号（上级主管）
+   	hiredate 入职日期
+  	sal  薪水
+   	comm  奖金
+  	deptno 部门编号
+
+  Dept表（部门表）
+     	deptno 部门编号
+	dname  部门名称
+	loc 所在位置
+ 
+  Bonus(薪资福利表)：结构与emp类似
+
+  SalGrade(薪资等级表)
+              grade:等级
+	losal:开始区间值
+	hisal:结束区间值
+
+
+
+
+
+
